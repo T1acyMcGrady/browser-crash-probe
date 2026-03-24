@@ -3,8 +3,8 @@
 // @namespace    local.debug
 // @version      0.1.0
 // @description  Records memory growth, user actions, requests, and crash clues for browser-side troubleshooting.
-// @match        https://dev1.useasy.cn/*
-// @match        https://*.useasy.cn/*
+// @match        https://www.baidu.com/*
+// @match        https://*.baidu.com/*
 // @run-at       document-idle
 // @grant        none
 // ==/UserScript==
