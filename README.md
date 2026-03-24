@@ -40,7 +40,7 @@ Browser-side crash and memory probe for troubleshooting page crashes, memory gro
 4. 如有需要，把顶部的 `@match` 改成目标域名，例如：
 
 ```js
-// @match https://dev1.useasy.cn/*
+// @match https://www.baidu.com/*
 ```
 
 5. 保存并刷新页面
