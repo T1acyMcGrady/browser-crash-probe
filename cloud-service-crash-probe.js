@@ -30,7 +30,11 @@
     startupAlert: true,
     warningGrowthBytes: 10 * 1024 * 1024,
     dangerGrowthBytes: 30 * 1024 * 1024,
-    flashDurationMs: 3000
+    flashDurationMs: 3000,
+    crashRetainedActions: 100,
+    crashRetainedMemorySamples: 200,
+    crashRetainedRequests: 100,
+    crashRetainedErrors: 100
   };
 
   var state = loadState();
@@ -414,6 +418,10 @@
     var lastRequest = lastItem(session.requests);
     var lastError = lastItem(session.errors);
     var peakSample = peakMemorySample(session.memorySamples);
+    var recentActions = clone(session.actions.slice(-CONFIG.crashRetainedActions));
+    var recentMemorySamples = clone(session.memorySamples.slice(-CONFIG.crashRetainedMemorySamples));
+    var recentRequests = clone(session.requests.slice(-CONFIG.crashRetainedRequests));
+    var recentErrors = clone(session.errors.slice(-CONFIG.crashRetainedErrors));
     return {
       sessionId: session.sessionId,
       startedAt: session.startedAt,
@@ -422,7 +430,14 @@
       href: session.href,
       title: session.title,
       memoryPeak: peakSample,
+      actionCount: session.actions.length,
       memorySampleCount: session.memorySamples.length,
+      requestCount: session.requests.length,
+      errorCount: session.errors.length,
+      recentActions: recentActions,
+      recentMemorySamples: recentMemorySamples,
+      recentRequests: recentRequests,
+      recentErrors: recentErrors,
       lastAction: lastAction,
       lastRequest: lastRequest,
       lastError: lastError,

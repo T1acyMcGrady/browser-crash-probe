@@ -98,6 +98,8 @@ Browser-side crash and memory probe for troubleshooting page crashes, memory gro
 - 上次异常退出前最后请求
 - 上次异常退出前最后错误
 - 上次会话内存峰值
+- 上次异常退出前最近 `100` 次操作
+- 上次异常退出前最近 `200` 个内存采样
 
 也可以在控制台执行：
 
@@ -126,12 +128,20 @@ CrashProbe.downloadReport()
 - `state.lastCrash.lastAction`
 - `state.lastCrash.lastRequest`
 - `state.lastCrash.lastError`
+- `state.lastCrash.recentActions`
+- `state.lastCrash.recentMemorySamples`
+- `state.lastCrash.recentRequests`
+- `state.lastCrash.recentErrors`
 - `state.current.memorySamples`
 - `state.current.actions`
 - `state.current.requests`
 - `state.current.errors`
 
-其中 `state.current.actions[*].memory` 里就是该次操作对应的内存数据。
+其中：
+
+- `state.lastCrash.recentActions[*].memory` 是崩溃前窗口内每次操作对应的内存数据
+- `state.lastCrash.recentMemorySamples` 可以直接用来判断哪一段开始持续上涨
+- `state.current.actions[*].memory` 是当前活跃会话里每次操作对应的内存数据
 
 ## 限制
 
